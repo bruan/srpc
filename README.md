@@ -13,8 +13,9 @@
 同步方式的实现采用了协程（windows采用纤程api实现，linux采用自定义实现），异步的方式采用future的方式，支持串行（then）以及并行（whenAll）
 
 #### 编译方式
-1. 首先需要下载编译第三方依赖库（windows下执行3rd/win_3rd.bat linux下执行3rd/linux_3rd.sh）
-2. 接着编译项目（windows下直接用vs2015打开build/srpc.sln就行，linux gcc版本至少4.8以上 cmake 2.8版本以上 执行build/build.sh all）
+1. 整个库只支持64位，所以第三方依赖库也必须编译成64位的
+2. 首先需要下载编译第三方依赖库（windows下执行3rd/win_3rd.bat，这个需要在vs2015的命令行工具下执行， linux下执行3rd/linux_3rd.sh）
+3. 接着编译项目（windows下直接用vs2015打开build/srpc.sln就行，linux gcc版本至少4.8以上 cmake 2.8版本以上 执行build/build.sh all）
 
 #### 下面以一个调用另外两个服务的例子来说明
 
