@@ -13,7 +13,8 @@
 同步方式的实现采用了协程（windows采用纤程api实现，linux采用自定义实现），异步的方式采用future的方式，支持串行（then）以及并行（whenAll）
 
 #### 编译方式
-windows下直接用vs2015，linux gcc版本至少4.8以上 采用CMake方式编译
+1. 首先需要下载编译第三方依赖库（windows下执行3rd/win_3rd.bat linux下执行3rd/linux_3rd.sh）
+2. 接着编译项目（windows下直接用vs2015打开build/srpc.sln就行，linux gcc版本至少4.8以上 执行build/build.sh all）
 
 #### 下面以一个调用另外两个服务的例子来说明
 
