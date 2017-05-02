@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="message_queue.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="test_srpc.cpp" />
+    <ClCompile Include="..\proto\request_msg.pb.cc">
+      <Filter>proto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\proto\request_msg0.pb.cc">
+      <Filter>proto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\proto\request_msg1.pb.cc">
+      <Filter>proto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\proto\request_msg2.pb.cc">
+      <Filter>proto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\proto\response_msg.pb.cc">
+      <Filter>proto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\proto\response_msg1.pb.cc">
+      <Filter>proto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\proto\response_msg2.pb.cc">
+      <Filter>proto</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="message_queue.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="..\proto\request_msg.pb.h">
+      <Filter>proto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\proto\request_msg0.pb.h">
+      <Filter>proto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\proto\request_msg1.pb.h">
+      <Filter>proto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\proto\request_msg2.pb.h">
+      <Filter>proto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\proto\response_msg.pb.h">
+      <Filter>proto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\proto\response_msg1.pb.h">
+      <Filter>proto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\proto\response_msg2.pb.h">
+      <Filter>proto</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="proto">
+      <UniqueIdentifier>{b411ec35-8cc8-4361-828f-5e6ec4df8553}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

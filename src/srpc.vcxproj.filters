@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="inc">
+      <UniqueIdentifier>{c67393b5-db45-447d-ae9f-1889db785f4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{047325f5-51df-4fdd-837a-4300bcf373c2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\inc\future.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\promise.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\rpc_channel.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\rpc_base.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\protobuf_codec.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\coroutine.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="coroutine_mgr.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="coroutine_impl.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\rpc_service.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\rpc_client.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\rpc_context.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\when_all.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\rpc_channel_group.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\inc\future.inl">
+      <Filter>inc</Filter>
+    </None>
+    <None Include="..\inc\promise.inl">
+      <Filter>inc</Filter>
+    </None>
+    <None Include="..\inc\rpc_service.inl">
+      <Filter>inc</Filter>
+    </None>
+    <None Include="..\inc\rpc_client.inl">
+      <Filter>inc</Filter>
+    </None>
+    <None Include="..\inc\protobuf_codec.inl">
+      <Filter>inc</Filter>
+    </None>
+    <None Include="..\inc\when_all.inl">
+      <Filter>inc</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="rpc.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="coroutine.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="coroutine_impl.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="coroutine_mgr.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="rpc_context.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="rpc_channel.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="rpc_channel_group.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

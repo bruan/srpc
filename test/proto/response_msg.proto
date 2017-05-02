@@ -1,0 +1,6 @@
+syntax = "proto2";
+
+message response_msg
+{
+	required string info = 1;
+}

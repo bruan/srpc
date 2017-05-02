@@ -1,0 +1,7 @@
+syntax = "proto2";
+
+message request_msg
+{
+	required uint32 tt = 1;
+	required string info = 2;
+}

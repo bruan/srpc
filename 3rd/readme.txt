@@ -1,0 +1,10 @@
+protobuf
+---include
+---lib
+------linux
+----------libprotobuf.a
+------win32
+----------debug
+-------------libprotobufd.lib
+----------release
+-------------libprotobuf.lib
