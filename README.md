@@ -14,7 +14,7 @@
 
 #### 编译方式
 1. 首先需要下载编译第三方依赖库（windows下执行3rd/win_3rd.bat linux下执行3rd/linux_3rd.sh）
-2. 接着编译项目（windows下直接用vs2015打开build/srpc.sln就行，linux gcc版本至少4.8以上 执行build/build.sh all）
+2. 接着编译项目（windows下直接用vs2015打开build/srpc.sln就行，linux gcc版本至少4.8以上 cmake 2.8版本以上 执行build/build.sh all）
 
 #### 下面以一个调用另外两个服务的例子来说明
 
