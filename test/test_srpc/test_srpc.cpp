@@ -632,7 +632,7 @@ public:
 			msg.set_tt(vecMessagePacket[i].nDataSize);
 			msg.set_info((char*)vecMessagePacket[i].pData);
 			rpc::CFuture<response_msg> sFuture;
-			m_client.async_call(&msg, sFuture, 10);
+			m_client.async_call(&msg, sFuture);
 			
 			sFuture.then([this](response_msg* pMsg, uint32_t nErrorCode)
 			{
