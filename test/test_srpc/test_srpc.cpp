@@ -261,7 +261,7 @@ class CServiceProxy :
 	public rpc::CRpcChannel
 {
 public:
-	CServiceProxy(CServiceA& serviceA, CServiceB& serviceB, rpc::CRpcService<rpc::codec::CProtobufCodec>& service) : m_client1(&m_rpcContext), m_client2(&m_rpcContext), m_serviceA(serviceA), m_serviceB(serviceB), CRpcChannel(service.getRpcChannelGroup()), m_service(service) {}
+	CServiceProxy(CServiceA& serviceA, CServiceB& serviceB, rpc::CRpcService<rpc::codec::CProtobufCodec>& service) : m_client1(&m_rpcContext, 10), m_client2(&m_rpcContext, 10), m_serviceA(serviceA), m_serviceB(serviceB), CRpcChannel(service.getRpcChannelGroup()), m_service(service) {}
 
 	void init()
 	{
@@ -324,13 +324,13 @@ public:
 		rpc::CFuture<response_msg1> sFuture;
 		request_msg1 msg1;
 		msg1.set_info(pRequest->info());
-		m_client1.async_call(&msg1, sFuture, 10);
+		m_client1.async_call(&msg1, sFuture);
 		sFuture.then_r([this](response_msg1* pMsg, uint32_t nErrorCode)
 		{
 			rpc::CFuture<response_msg2> sFuture;
 			request_msg2 msg2;
 			msg2.set_info(pMsg->info());
-			m_client2.async_call(&msg2, sFuture, 10);
+			m_client2.async_call(&msg2, sFuture);
 
 			return sFuture;
 		}).then([this, sSessionInfo](response_msg2* pMsg, uint32_t nErrorCode)
@@ -349,7 +349,7 @@ public:
 		rpc::CFuture<response_msg1> sFuture1;
 		request_msg1 msg1;
 		msg1.set_info(pRequest->info());
-		m_client1.async_call(&msg1, sFuture1, 10);
+		m_client1.async_call(&msg1, sFuture1);
 		sFuture1.wait();
 		auto pMsg1 = sFuture1.getValue();
 		if (nullptr == pMsg1)
@@ -358,7 +358,7 @@ public:
 		rpc::CFuture<response_msg2> sFuture2;
 		request_msg2 msg2;
 		msg2.set_info(pRequest->info());
-		m_client2.async_call(&msg2, sFuture2, 10);
+		m_client2.async_call(&msg2, sFuture2);
 		sFuture2.wait();
 		auto pMsg2 = sFuture2.getValue();
 		if (nullptr == pMsg2)
@@ -375,14 +375,14 @@ public:
 		request_msg1 msg1;
 		std::shared_ptr<response_msg1> pMsg1 = nullptr;
 		msg1.set_info(pRequest->info());
-		m_client1.sync_call(&msg1, pMsg1, 10);
+		m_client1.sync_call(&msg1, pMsg1);
 		if (nullptr == pMsg1)
 			return false;
 
 		request_msg2 msg2;
 		std::shared_ptr<response_msg2> pMsg2 = nullptr;
 		msg2.set_info(pRequest->info());
-		m_client2.sync_call(&msg2, pMsg2, 10);
+		m_client2.sync_call(&msg2, pMsg2);
 		if (nullptr == pMsg2)
 			return false;
 		
@@ -397,12 +397,12 @@ public:
 		rpc::CFuture<response_msg1> sFuture1;
 		request_msg1 msg1;
 		msg1.set_info(pRequest->info());
-		m_client1.async_call(&msg1, sFuture1, 10);
+		m_client1.async_call(&msg1, sFuture1);
 
 		rpc::CFuture<response_msg2> sFuture2;
 		request_msg2 msg2;
 		msg2.set_info(pRequest->info());
-		m_client2.async_call(&msg2, sFuture2, 10);
+		m_client2.async_call(&msg2, sFuture2);
 
 		auto sFuture = rpc::whenAll(sFuture1, sFuture2);
 
@@ -427,12 +427,12 @@ public:
 		rpc::CFuture<response_msg1> sFuture1;
 		request_msg1 msg1;
 		msg1.set_info(pRequest->info());
-		m_client1.async_call(&msg1, sFuture1, 10);
+		m_client1.async_call(&msg1, sFuture1);
 
 		rpc::CFuture<response_msg2> sFuture2;
 		request_msg2 msg2;
 		msg2.set_info(pRequest->info());
-		m_client2.async_call(&msg2, sFuture2, 10);
+		m_client2.async_call(&msg2, sFuture2);
 
 		sFuture1.wait();
 		sFuture2.wait();
@@ -453,7 +453,7 @@ public:
 		rpc::CFuture<response_msg1> sFuture1;
 		request_msg1 msg1;
 		msg1.set_info(pRequest->info());
-		m_client1.async_call(&msg1, sFuture1, 10);
+		m_client1.async_call(&msg1, sFuture1);
 		sFuture1
 			.then_r(std::bind(&CServiceProxy::ff1, this, std::placeholders::_1, std::placeholders::_2))
 			.then(std::bind(&CServiceProxy::ff2, this, sSessionInfo, std::placeholders::_1, std::placeholders::_2));
@@ -590,7 +590,7 @@ class CClient :
 	public rpc::CRpcChannel
 {
 public:
-	CClient(CServiceProxy& serviceProxy) : m_client(&m_rpcContext), m_serviceProxy(serviceProxy) { }
+	CClient(CServiceProxy& serviceProxy) : m_client(&m_rpcContext, 10), m_serviceProxy(serviceProxy) { }
 
 	void init()
 	{

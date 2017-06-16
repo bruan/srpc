@@ -19,7 +19,7 @@ namespace rpc
 		const CRpcClient& operator = (const CRpcClient&) = delete;
 
 	public:
-		CRpcClient(CRpcContext* pRpcContext);
+		CRpcClient(CRpcContext* pRpcContext, uint32_t nTimeout);
 		~CRpcClient();
 
 		void		setChannel(CRpcChannel* pRpcChannel);
@@ -34,19 +34,20 @@ namespace rpc
 		异步的调用远程的接口，通过CFuture来拿到响应结果
 		*/
 		template<class T, class R>
-		uint32_t	async_call(const T* pMessage, CFuture<R>& sFuture, uint32_t nTimeout);
+		uint32_t	async_call(const T* pMessage, CFuture<R>& sFuture);
 
 		/*
 		同步的调用远程的接口，通过pResponseMessage来拿到响应结果，这里用shared_ptr的原因是为了自动释放pResponseMessage
 		*/
 		template<class T, class R>
-		uint32_t	sync_call(const T* pMessage, std::shared_ptr<R>& pResponseMessage, uint32_t nTimeout);
+		uint32_t	sync_call(const T* pMessage, std::shared_ptr<R>& pResponseMessage);
 
 	private:
 		uint64_t		m_nClientID;
 		CRpcContext*	m_pRpcContext;
 		CRpcChannel*	m_pRpcChannel;
 		CodecPolicy		m_codecPolicy;
+		uint32_t		m_nTimeout;
 	};
 }
 

@@ -4,9 +4,10 @@
 namespace rpc
 {
 	template<class CodecPolicy>
-	CRpcClient<CodecPolicy>::CRpcClient(CRpcContext* pRpcContext)
+	CRpcClient<CodecPolicy>::CRpcClient(CRpcContext* pRpcContext, uint32_t nTimeout)
 		: m_pRpcChannel(nullptr)
 		, m_pRpcContext(pRpcContext)
+		, m_nTimeout(nTimeout)
 	{
 		this->m_nClientID = pRpcContext->genClientID();
 	}
@@ -41,7 +42,7 @@ namespace rpc
 
 	template<class CodecPolicy>
 	template<class T, class R>
-	uint32_t CRpcClient<CodecPolicy>::async_call(const T* pMessage, CFuture<R>& sFuture, uint32_t nTimeout)
+	uint32_t CRpcClient<CodecPolicy>::async_call(const T* pMessage, CFuture<R>& sFuture)
 	{
 		SRequest sRequest;
 		if (!this->m_codecPolicy.serializeRequest(pMessage, sRequest))
@@ -102,14 +103,14 @@ namespace rpc
 		sPendingResponseInfo.pInvoke = callback;
 		sFuture = pPromise->getFuture();
 
-		this->m_pRpcContext->addPendingResponseInfo(sPendingResponseInfo, nTimeout);
+		this->m_pRpcContext->addPendingResponseInfo(sPendingResponseInfo, this->m_nTimeout);
 
 		return eRC_OK;
 	}
 
 	template<class CodecPolicy>
 	template<class T, class R>
-	uint32_t CRpcClient<CodecPolicy>::sync_call(const T* pMessage, std::shared_ptr<R>& pResponseMessage, uint32_t nTimeout)
+	uint32_t CRpcClient<CodecPolicy>::sync_call(const T* pMessage, std::shared_ptr<R>& pResponseMessage)
 	{
 		SRequest sRequest;
 		if (!this->m_codecPolicy.serializeRequest(pMessage, sRequest))
@@ -147,7 +148,7 @@ namespace rpc
 		sPendingResponseInfo.nClientID = this->m_nClientID;
 		sPendingResponseInfo.pInvoke = callback;
 		
-		this->m_pRpcContext->addPendingResponseInfo(sPendingResponseInfo, nTimeout);
+		this->m_pRpcContext->addPendingResponseInfo(sPendingResponseInfo, this->m_nTimeout);
 
 		coroutine::yield();
 		uintptr_t nResponseMessage = 0;
