@@ -37,7 +37,7 @@ namespace rpc
 		uint32_t	async_call(const T* pMessage, CFuture<R>& sFuture, uint32_t nTimeout);
 
 		/*
-		同步的调用远程的接口，通过pResponseMessage来拿到响应结果
+		同步的调用远程的接口，通过pResponseMessage来拿到响应结果，这里用shared_ptr的原因是为了自动释放pResponseMessage
 		*/
 		template<class T, class R>
 		uint32_t	sync_call(const T* pMessage, std::shared_ptr<R>& pResponseMessage, uint32_t nTimeout);
