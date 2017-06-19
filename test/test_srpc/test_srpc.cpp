@@ -466,7 +466,7 @@ public:
 		rpc::CFuture<response_msg2> sFuture;
 		request_msg2 msg2;
 		msg2.set_info(pMsg->info());
-		m_client2.async_call(&msg2, sFuture, 10);
+		m_client2.async_call(&msg2, sFuture);
 
 		return sFuture;
 	}
